@@ -125,7 +125,9 @@ function goSubmitAfterPay() {
 
   serviceSelect.value = item.service;
   paymentMethod.value = currentPayType === "wechat" ? "微信支付" : "支付宝支付";
-  paymentNote.value = `已按固定金额付款：￥${item.price}`;
+
+  paymentNote.value = "";
+  paymentNote.placeholder = `请填写付款时间 / 付款昵称 / 是否已发截图，需人工核验：￥${item.price}`;
 
   document.getElementById("selectedPackageText").textContent = item.service;
 
@@ -249,6 +251,7 @@ function loadOrders() {
       <p>服务类型：${escapeHTML(order.service)}</p>
       <p>付款方式：${escapeHTML(order.paymentMethod)}</p>
       <p>付款备注：${escapeHTML(order.paymentNote)}</p>
+      <p>付款状态：待人工核验，以实际到账为准</p>
       <p>需求说明：${escapeHTML(order.message)}</p>
       <p style="color:#999;font-size:12px;margin-top:6px;">
         称呼和联系方式已打码展示，本地记录已加密保存
@@ -288,9 +291,10 @@ async function sendToFormspree(order) {
   formData.append("服务类型", order.service);
   formData.append("付款方式", order.paymentMethod);
   formData.append("付款备注", order.paymentNote);
+  formData.append("付款状态", "待人工核验，以实际到账为准");
   formData.append("需求说明", order.message);
   formData.append("提交时间", order.submitTime);
-  formData.append("_subject", "简历助手收到新的已付款客户需求");
+  formData.append("_subject", "简历助手收到新的客户需求：待核验付款");
 
   const response = await fetch(FORM_ENDPOINT, {
     method: "POST",
@@ -321,6 +325,7 @@ form.addEventListener("submit", async function (e) {
     service: document.getElementById("service").value,
     paymentMethod: document.getElementById("paymentMethod").value,
     paymentNote: document.getElementById("paymentNote").value.trim(),
+    paymentStatus: "待人工核验，以实际到账为准",
     message: document.getElementById("message").value.trim(),
     submitTime: new Date().toLocaleString()
   };
@@ -334,9 +339,9 @@ form.addEventListener("submit", async function (e) {
     !order.paymentNote ||
     !order.message
   ) {
-    alert("请把信息填写完整。");
+    alert("请把信息填写完整。付款备注请填写付款时间、付款昵称或是否已发送截图。");
     submitButton.disabled = false;
-    submitButton.textContent = "提交需求";
+    submitButton.textContent = "提交需求，等待人工核验";
     return;
   }
 
@@ -351,13 +356,13 @@ form.addEventListener("submit", async function (e) {
     document.getElementById("selectedPackageText").textContent = "暂未选择套餐";
     loadOrders();
 
-    alert("提交成功！需求已发送，我们会尽快联系你核对付款并处理。");
+    alert("提交成功！需求已发送。我们会人工核验付款，确认到账后开始处理。");
   } catch (error) {
     console.error(error);
-    alert("提交失败，请稍后再试，或直接添加微信/电话：15840622209");
+    alert("提交失败，请稍后再试，或直接添加微信 / 电话：15840622209");
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = "提交需求";
+    submitButton.textContent = "提交需求，等待人工核验";
   }
 });
 

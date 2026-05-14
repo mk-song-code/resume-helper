@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>简历助手</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="style.css?v=20260514-verify" />
 </head>
 
 <body>
@@ -21,12 +23,15 @@
             <span>学生党求职资料优化</span>
           </div>
         </div>
+
         <div class="price-pill">￥5 起</div>
       </div>
 
       <div class="hero-content">
         <p class="hero-label">实习 / 兼职 / 校招 / 面试准备</p>
+
         <h1>让你的简历<br />更清晰、更专业</h1>
+
         <p class="hero-desc">
           提供简历基础检查、排版优化、内容润色和面试自我介绍服务。
           适合正在找实习、投简历、准备面试的同学。
@@ -48,8 +53,8 @@
           <span>扫码支付</span>
         </div>
         <div>
-          <strong>当天</strong>
-          <span>可沟通加急</span>
+          <strong>人工核验</strong>
+          <span>确认到账</span>
         </div>
       </div>
     </header>
@@ -135,7 +140,7 @@
           </div>
 
           <ul>
-            <li>优化实习/校园经历</li>
+            <li>优化实习 / 校园经历</li>
             <li>突出职责、成果和能力</li>
             <li>增强岗位匹配表达</li>
           </ul>
@@ -170,7 +175,7 @@
       </div>
 
       <p class="notice">
-        说明：请按当前套餐显示的固定金额二维码付款。付款后提交需求，并保留付款截图，方便人工核对。
+        说明：网页不能自动确认是否到账。付款后请提交需求，你的订单状态会显示为“待人工核验付款”，实际服务以到账记录为准。
       </p>
     </section>
 
@@ -196,7 +201,7 @@
         </div>
         <div>
           <b>4</b>
-          <p>沟通交付</p>
+          <p>核验处理</p>
         </div>
       </div>
     </section>
@@ -205,7 +210,7 @@
       <div class="section-title">
         <span>Delivery</span>
         <h2>交付时间</h2>
-        <p>具体时间会根据内容长度和修改难度沟通确认。</p>
+        <p>付款核验后开始处理，具体时间根据内容长度和修改难度沟通确认。</p>
       </div>
 
       <div class="delivery-grid">
@@ -213,14 +218,17 @@
           <strong>基础检查</strong>
           <p>一般当天完成</p>
         </div>
+
         <div class="delivery-card">
           <strong>排版优化</strong>
           <p>当天或次日完成</p>
         </div>
+
         <div class="delivery-card">
           <strong>内容润色</strong>
           <p>一般 1 天内完成</p>
         </div>
+
         <div class="delivery-card">
           <strong>加急需求</strong>
           <p>需提前微信沟通</p>
@@ -262,7 +270,7 @@
         <p>1. 本服务主要提供简历表达、排版和求职资料优化建议。</p>
         <p>2. 不承诺一定获得面试或 offer，求职结果受岗位、经历、投递时机等多种因素影响。</p>
         <p>3. 请勿提交身份证号、银行卡号、家庭住址等敏感信息。</p>
-        <p>4. 付款后请提交需求，也可以添加微信发送付款截图和简历资料。</p>
+        <p>4. 网页不能自动判断是否真实付款，所有订单都需要人工核验到账后再开始处理。</p>
       </div>
     </section>
 
@@ -270,11 +278,12 @@
       <div class="section-title">
         <span>Submit</span>
         <h2>提交你的需求</h2>
-        <p>付款后填写需求，我们会尽快联系你。</p>
+        <p>扫码后填写需求，我们会人工核验付款并尽快联系你。</p>
       </div>
 
       <div class="selected-box">
         <p>当前套餐：<strong id="selectedPackageText">暂未选择套餐</strong></p>
+        <p>付款状态：<strong>待人工核验，以实际到账为准</strong></p>
       </div>
 
       <form id="orderForm">
@@ -306,7 +315,7 @@
         <input
           type="text"
           id="paymentNote"
-          placeholder="付款备注，例如：已付款 / 付款时间 / 付款昵称"
+          placeholder="请填写付款时间 / 付款昵称 / 是否已发截图，需人工核验"
           required
         />
 
@@ -316,7 +325,7 @@
           required
         ></textarea>
 
-        <button type="submit">提交需求</button>
+        <button type="submit">提交需求，等待人工核验</button>
       </form>
 
       <div class="orders">
@@ -345,7 +354,7 @@
         </div>
 
         <div class="pay-warning">
-          请使用当前套餐对应二维码付款，不要自行修改金额。
+          请使用当前套餐对应二维码付款。网页不能自动确认到账，提交后需人工核验。
         </div>
 
         <div class="pay-tabs">
@@ -359,11 +368,11 @@
         </div>
 
         <div class="contact-mini">
-          <p>付款后如需核对，可添加微信：</p>
+          <p>付款后如需核对，可添加微信发送付款截图：</p>
           <img src="images/wechat-contact.jpg" alt="微信二维码" />
         </div>
 
-        <button class="paid-btn" onclick="goSubmitAfterPay()">我已完成支付，去提交需求</button>
+        <button class="paid-btn" onclick="goSubmitAfterPay()">我已扫码，去填写付款信息</button>
       </div>
     </div>
 
@@ -381,6 +390,6 @@
 
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260514-verify"></script>
 </body>
 </html>
