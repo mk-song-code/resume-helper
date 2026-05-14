@@ -1,0 +1,381 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  background: #eef2f8;
+  color: #222;
+  padding-bottom: 80px;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #ffffff;
+  min-height: 100vh;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+}
+
+.hero {
+  padding: 42px 24px 38px;
+  background: linear-gradient(135deg, #1f3c88, #5c7cfa);
+  color: white;
+  border-radius: 0 0 30px 30px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 7px 13px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+.hero p {
+  font-size: 15px;
+  line-height: 1.8;
+  opacity: 0.96;
+  margin-bottom: 26px;
+}
+
+button {
+  border: none;
+  background: #ffcc00;
+  color: #222;
+  padding: 13px 22px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(255, 204, 0, 0.35);
+}
+
+.section {
+  padding: 28px 22px;
+}
+
+.section-title {
+  margin-bottom: 18px;
+}
+
+.section-title h2 {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.section-title p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.card {
+  background: #f7f9ff;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(31, 60, 136, 0.08);
+  border: 1px solid #edf1ff;
+}
+
+.card h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.card span {
+  color: #1f3c88;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.light {
+  background: #f8faff;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.steps div {
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  padding: 15px 8px;
+  box-shadow: 0 5px 14px rgba(31, 60, 136, 0.06);
+}
+
+.steps b {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  background: #1f3c88;
+  color: white;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+.steps p {
+  font-size: 13px;
+  color: #444;
+}
+
+.case-box {
+  display: grid;
+  gap: 14px;
+}
+
+.case-card {
+  border-radius: 18px;
+  padding: 18px;
+  line-height: 1.7;
+}
+
+.case-card h3 {
+  margin-bottom: 10px;
+}
+
+.case-card p {
+  color: #444;
+  font-size: 14px;
+}
+
+.before {
+  background: #fff6f6;
+  border-left: 5px solid #ff7b7b;
+}
+
+.after {
+  background: #f2fff7;
+  border-left: 5px solid #36b36b;
+}
+
+.price-section {
+  background: #ffffff;
+}
+
+.price-list {
+  display: grid;
+  gap: 12px;
+}
+
+.price-item {
+  background: #f7f9ff;
+  border-radius: 16px;
+  padding: 16px;
+  display: grid;
+  gap: 6px;
+  border: 1px solid #edf1ff;
+}
+
+.price-item span {
+  font-size: 15px;
+  color: #444;
+}
+
+.price-item strong {
+  font-size: 22px;
+  color: #1f3c88;
+}
+
+.price-item p {
+  color: #666;
+  font-size: 14px;
+}
+
+.notice {
+  margin-top: 14px;
+  padding: 12px;
+  background: #fff8dc;
+  border-radius: 14px;
+  color: #7a5a00;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.form-section {
+  background: #f8faff;
+}
+
+form {
+  display: grid;
+  gap: 12px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #dcdfea;
+  border-radius: 14px;
+  font-size: 15px;
+  outline: none;
+  background: white;
+  font-family: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #5c7cfa;
+  box-shadow: 0 0 0 3px rgba(92, 124, 250, 0.12);
+}
+
+textarea {
+  min-height: 110px;
+  resize: none;
+}
+
+form button {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.orders {
+  margin-top: 28px;
+}
+
+.orders h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.order-item {
+  background: white;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  border-left: 5px solid #1f3c88;
+  box-shadow: 0 5px 14px rgba(31, 60, 136, 0.06);
+}
+
+.order-item p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.empty {
+  color: #777;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  padding: 28px 20px 100px;
+  color: #666;
+  font-size: 14px;
+  background: #f3f5fa;
+  line-height: 1.8;
+}
+
+.float-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 440px;
+  z-index: 99;
+}
+
+.float-bar button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 999px;
+  background: #ffcc00;
+  color: #222;
+  font-size: 17px;
+  font-weight: bold;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.wechat-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.wechat-box {
+  width: 86%;
+  max-width: 360px;
+  background: white;
+  border-radius: 22px;
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+}
+
+.wechat-box h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.wechat-box p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.wechat-number {
+  background: #f7f9ff;
+  color: #1f3c88;
+  font-weight: bold;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+}
+
+.wechat-box button {
+  width: 100%;
+}
+
+@media (max-width: 420px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}

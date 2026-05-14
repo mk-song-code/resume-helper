@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>简历助手</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <div class="tag">学生党友好价 · 实习 / 求职 / 毕业季适用</div>
+      <h1>简历助手</h1>
+      <p>
+        提供简历检查、排版优化、内容润色和面试自我介绍服务，
+        帮你把求职资料改得更清晰、更专业、更有竞争力。
+      </p>
+      <button onclick="scrollToForm()">立即提交需求</button>
+    </header>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>热门服务</h2>
+        <p>新客体验价 5 元起，适合学生、实习生和应届求职者。</p>
+      </div>
+
+      <div class="service-grid">
+        <div class="card">
+          <h3>简历基础检查</h3>
+          <p>检查错别字、格式混乱、信息缺失、表达不清等基础问题。</p>
+          <span>￥5 起</span>
+        </div>
+
+        <div class="card">
+          <h3>简历排版优化</h3>
+          <p>调整字体、间距、版面结构和内容层级，让简历更清爽。</p>
+          <span>￥9.9 起</span>
+        </div>
+
+        <div class="card">
+          <h3>简历内容润色</h3>
+          <p>优化实习经历、校园经历和项目经历，让表达更有重点。</p>
+          <span>￥19.9 起</span>
+        </div>
+
+        <div class="card">
+          <h3>面试自我介绍</h3>
+          <p>根据目标岗位定制 1 分钟面试自我介绍稿。</p>
+          <span>￥29.9 起</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light">
+      <div class="section-title">
+        <h2>服务流程</h2>
+        <p>简单 4 步，快速完成简历优化。</p>
+      </div>
+
+      <div class="steps">
+        <div>
+          <b>1</b>
+          <p>提交需求</p>
+        </div>
+        <div>
+          <b>2</b>
+          <p>确认方向</p>
+        </div>
+        <div>
+          <b>3</b>
+          <p>开始优化</p>
+        </div>
+        <div>
+          <b>4</b>
+          <p>交付结果</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>案例展示</h2>
+        <p>让普通经历表达得更具体、更有结果感。</p>
+      </div>
+
+      <div class="case-box">
+        <div class="case-card before">
+          <h3>修改前</h3>
+          <p>负责社团活动，参与公众号运营，完成相关工作。</p>
+        </div>
+
+        <div class="case-card after">
+          <h3>修改后</h3>
+          <p>
+            负责社团活动策划与公众号内容运营，累计组织 5 场校园活动，
+            协助完成推文选题、排版与发布，提升社群活跃度和内容传播效果。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section price-section">
+      <div class="section-title">
+        <h2>价格说明</h2>
+        <p>前期主打学生友好价，价格低但服务范围清楚。</p>
+      </div>
+
+      <div class="price-list">
+        <div class="price-item">
+          <span>体验版</span>
+          <strong>￥5 起</strong>
+          <p>基础检查 + 简单建议</p>
+        </div>
+
+        <div class="price-item">
+          <span>标准版</span>
+          <strong>￥9.9–19.9</strong>
+          <p>排版优化 + 内容润色</p>
+        </div>
+
+        <div class="price-item">
+          <span>进阶版</span>
+          <strong>￥29.9 起</strong>
+          <p>岗位匹配 + 面试介绍稿</p>
+        </div>
+      </div>
+
+      <p class="notice">
+        注：体验价包含基础修改 1 次，如需深度优化、多次修改或加急处理，可单独沟通。
+      </p>
+    </section>
+
+    <section class="section form-section" id="formSection">
+      <div class="section-title">
+        <h2>提交你的需求</h2>
+        <p>填写后会生成一条需求记录，方便后续联系。</p>
+      </div>
+
+      <form id="orderForm">
+        <input type="text" id="name" placeholder="你的称呼，例如：小王" required />
+
+        <input type="text" id="phone" placeholder="微信号 / 手机号" required />
+
+        <input
+          type="text"
+          id="job"
+          placeholder="目标岗位，例如：新媒体运营 / 教师 / 行政"
+          required
+        />
+
+        <select id="service" required>
+          <option value="">请选择服务类型</option>
+          <option value="简历基础检查 ￥5 起">简历基础检查 ￥5 起</option>
+          <option value="简历排版优化 ￥9.9 起">简历排版优化 ￥9.9 起</option>
+          <option value="简历内容润色 ￥19.9 起">简历内容润色 ￥19.9 起</option>
+          <option value="面试自我介绍 ￥29.9 起">面试自我介绍 ￥29.9 起</option>
+          <option value="求职信 / 邮件润色">求职信 / 邮件润色</option>
+        </select>
+
+        <textarea
+          id="message"
+          placeholder="简单描述你的需求，例如：想投新媒体运营岗，需要优化实习经历表达。"
+          required
+        ></textarea>
+
+        <button type="submit">提交需求</button>
+      </form>
+
+      <div class="orders">
+        <h3>已提交需求</h3>
+        <div id="orderList"></div>
+      </div>
+    </section>
+
+    <footer>
+      <p>简历助手 · 求职资料优化服务</p>
+      <p>微信 / 电话联系：15840622209</p>
+    </footer>
+
+    <div class="float-bar">
+      <button onclick="showWechat()">立即微信咨询</button>
+    </div>
+
+    <div class="wechat-modal" id="wechatModal">
+      <div class="wechat-box">
+        <h3>添加微信咨询</h3>
+        <p>请添加微信或拨打电话，发送“简历优化”获取报价和服务说明。</p>
+        <div class="wechat-number">微信 / 电话：15840622209</div>
+        <button onclick="hideWechat()">我知道了</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
