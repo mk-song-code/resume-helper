@@ -84,6 +84,10 @@ button:hover {
   line-height: 1.6;
 }
 
+.light {
+  background: #f8faff;
+}
+
 .service-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -116,8 +120,70 @@ button:hover {
   font-size: 18px;
 }
 
-.light {
-  background: #f8faff;
+.audience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.audience-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid #edf1ff;
+  box-shadow: 0 5px 14px rgba(31, 60, 136, 0.05);
+}
+
+.audience-card strong {
+  display: block;
+  color: #1f3c88;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.audience-card p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.scope-list {
+  display: grid;
+  gap: 14px;
+}
+
+.scope-item {
+  background: #f7f9ff;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid #edf1ff;
+}
+
+.scope-item div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.scope-item h3 {
+  font-size: 18px;
+}
+
+.scope-item p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.badge {
+  white-space: nowrap;
+  background: #1f3c88;
+  color: white;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 999px;
 }
 
 .steps {
@@ -148,6 +214,31 @@ button:hover {
 .steps p {
   font-size: 13px;
   color: #444;
+}
+
+.delivery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.delivery-card {
+  background: #f7f9ff;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid #edf1ff;
+}
+
+.delivery-card strong {
+  display: block;
+  color: #1f3c88;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.delivery-card p {
+  color: #555;
+  font-size: 14px;
 }
 
 .case-box {
@@ -221,6 +312,24 @@ button:hover {
   color: #7a5a00;
   font-size: 13px;
   line-height: 1.6;
+}
+
+.policy-card {
+  background: #f7f9ff;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid #edf1ff;
+}
+
+.policy-card p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.policy-card p:last-child {
+  margin-bottom: 0;
 }
 
 .form-section {
@@ -371,11 +480,18 @@ footer {
     font-size: 32px;
   }
 
-  .service-grid {
+  .service-grid,
+  .audience-grid,
+  .delivery-grid {
     grid-template-columns: 1fr;
   }
 
   .steps {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .scope-item div {
+    align-items: flex-start;
+    flex-direction: column-reverse;
   }
 }
