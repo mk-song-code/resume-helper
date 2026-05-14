@@ -3,14 +3,133 @@ const orderList = document.getElementById("orderList");
 
 const STORAGE_KEY = "resumeOrdersEncrypted";
 const SECRET_KEY = "resume-helper-local-demo-key";
-
-// 你的 Formspree 表单接收地址
 const FORM_ENDPOINT = "https://formspree.io/f/mnjwyldj";
+
+const packages = {
+  basic: {
+    name: "简历基础检查",
+    price: "5",
+    service: "简历基础检查 ￥5",
+    wechatQr: "images/wechat-pay-5.jpg",
+    alipayQr: "images/alipay-pay-5.jpg"
+  },
+  layout: {
+    name: "简历排版优化",
+    price: "9.9",
+    service: "简历排版优化 ￥9.9",
+    wechatQr: "images/wechat-pay-9-9.jpg",
+    alipayQr: "images/alipay-pay-9-9.jpg"
+  },
+  polish: {
+    name: "简历内容润色",
+    price: "19.9",
+    service: "简历内容润色 ￥19.9",
+    wechatQr: "images/wechat-pay-19-9.jpg",
+    alipayQr: "images/alipay-pay-19-9.jpg"
+  },
+  interview: {
+    name: "面试自我介绍",
+    price: "29.9",
+    service: "面试自我介绍 ￥29.9",
+    wechatQr: "images/wechat-pay-29-9.jpg",
+    alipayQr: "images/alipay-pay-29-9.jpg"
+  }
+};
+
+let currentPackageKey = "";
+let currentPayType = "wechat";
+
+function scrollToPackages() {
+  document.getElementById("packagesSection").scrollIntoView({
+    behavior: "smooth"
+  });
+}
 
 function scrollToForm() {
   document.getElementById("formSection").scrollIntoView({
     behavior: "smooth"
   });
+}
+
+function openPay(packageKey) {
+  currentPackageKey = packageKey;
+  currentPayType = "wechat";
+
+  const item = packages[packageKey];
+
+  document.getElementById("payPackageName").textContent = item.name;
+  document.getElementById("payPrice").textContent = item.price;
+
+  updatePayQr();
+  updateTabState();
+
+  document.getElementById("payModal").style.display = "flex";
+}
+
+function closePay() {
+  document.getElementById("payModal").style.display = "none";
+}
+
+function switchPayTab(type) {
+  currentPayType = type;
+  updatePayQr();
+  updateTabState();
+}
+
+function updateTabState() {
+  const tabs = document.querySelectorAll(".pay-tabs .tab");
+
+  tabs.forEach((tab) => {
+    tab.classList.remove("active");
+  });
+
+  if (currentPayType === "wechat") {
+    tabs[0].classList.add("active");
+  } else {
+    tabs[1].classList.add("active");
+  }
+}
+
+function updatePayQr() {
+  const item = packages[currentPackageKey];
+
+  if (!item) {
+    return;
+  }
+
+  const qrImage = document.getElementById("payQrImage");
+  const qrText = document.getElementById("payQrText");
+
+  if (currentPayType === "wechat") {
+    qrImage.src = item.wechatQr;
+    qrText.textContent = `微信支付：请支付 ￥${item.price}`;
+  } else {
+    qrImage.src = item.alipayQr;
+    qrText.textContent = `支付宝支付：请支付 ￥${item.price}`;
+  }
+}
+
+function goSubmitAfterPay() {
+  const item = packages[currentPackageKey];
+
+  if (!item) {
+    alert("请先选择套餐。");
+    return;
+  }
+
+  closePay();
+
+  const serviceSelect = document.getElementById("service");
+  const paymentMethod = document.getElementById("paymentMethod");
+  const paymentNote = document.getElementById("paymentNote");
+
+  serviceSelect.value = item.service;
+  paymentMethod.value = currentPayType === "wechat" ? "微信支付" : "支付宝支付";
+  paymentNote.value = `已按固定金额付款：￥${item.price}`;
+
+  document.getElementById("selectedPackageText").textContent = item.service;
+
+  scrollToForm();
 }
 
 function showWechat() {
@@ -22,7 +141,7 @@ function hideWechat() {
 }
 
 function escapeHTML(text) {
-  return String(text)
+  return String(text || "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -30,9 +149,8 @@ function escapeHTML(text) {
     .replaceAll("'", "&#039;");
 }
 
-/* 称呼打码 */
 function maskName(name) {
-  const text = String(name).trim();
+  const text = String(name || "").trim();
 
   if (text.length === 0) {
     return "匿名用户";
@@ -45,9 +163,8 @@ function maskName(name) {
   return text.slice(0, 1) + "*".repeat(text.length - 1);
 }
 
-/* 联系方式打码 */
 function maskContact(contact) {
-  const text = String(contact).trim();
+  const text = String(contact || "").trim();
 
   if (/^\d{11}$/.test(text)) {
     return text.slice(0, 3) + "****" + text.slice(7);
@@ -60,7 +177,6 @@ function maskContact(contact) {
   return text.slice(0, 2) + "****" + text.slice(-2);
 }
 
-/* 简单加密：适合本地演示，不适合正式商业级数据安全 */
 function simpleEncrypt(text) {
   let result = "";
 
@@ -73,7 +189,6 @@ function simpleEncrypt(text) {
   return btoa(unescape(encodeURIComponent(result)));
 }
 
-/* 简单解密 */
 function simpleDecrypt(encryptedText) {
   try {
     const decoded = decodeURIComponent(escape(atob(encryptedText)));
@@ -132,6 +247,8 @@ function loadOrders() {
       <p>联系方式：${escapeHTML(maskContact(order.phone))}</p>
       <p>目标岗位：${escapeHTML(order.job)}</p>
       <p>服务类型：${escapeHTML(order.service)}</p>
+      <p>付款方式：${escapeHTML(order.paymentMethod)}</p>
+      <p>付款备注：${escapeHTML(order.paymentNote)}</p>
       <p>需求说明：${escapeHTML(order.message)}</p>
       <p style="color:#999;font-size:12px;margin-top:6px;">
         称呼和联系方式已打码展示，本地记录已加密保存
@@ -162,7 +279,6 @@ function clearOrders() {
   alert("本地提交记录已清空。");
 }
 
-/* 提交到 Formspree，让你邮箱收到客户信息 */
 async function sendToFormspree(order) {
   const formData = new FormData();
 
@@ -170,9 +286,11 @@ async function sendToFormspree(order) {
   formData.append("联系方式", order.phone);
   formData.append("目标岗位", order.job);
   formData.append("服务类型", order.service);
+  formData.append("付款方式", order.paymentMethod);
+  formData.append("付款备注", order.paymentNote);
   formData.append("需求说明", order.message);
   formData.append("提交时间", order.submitTime);
-  formData.append("_subject", "简历助手收到新的客户需求");
+  formData.append("_subject", "简历助手收到新的已付款客户需求");
 
   const response = await fetch(FORM_ENDPOINT, {
     method: "POST",
@@ -201,11 +319,21 @@ form.addEventListener("submit", async function (e) {
     phone: document.getElementById("phone").value.trim(),
     job: document.getElementById("job").value.trim(),
     service: document.getElementById("service").value,
+    paymentMethod: document.getElementById("paymentMethod").value,
+    paymentNote: document.getElementById("paymentNote").value.trim(),
     message: document.getElementById("message").value.trim(),
     submitTime: new Date().toLocaleString()
   };
 
-  if (!order.name || !order.phone || !order.job || !order.service || !order.message) {
+  if (
+    !order.name ||
+    !order.phone ||
+    !order.job ||
+    !order.service ||
+    !order.paymentMethod ||
+    !order.paymentNote ||
+    !order.message
+  ) {
     alert("请把信息填写完整。");
     submitButton.disabled = false;
     submitButton.textContent = "提交需求";
@@ -213,19 +341,17 @@ form.addEventListener("submit", async function (e) {
   }
 
   try {
-    // 1. 发送到 Formspree，你邮箱会收到
     await sendToFormspree(order);
 
-    // 2. 本地加密保存一份
     const orders = getOrders();
     orders.unshift(order);
     saveOrders(orders);
 
-    // 3. 页面显示打码后的提交记录
     form.reset();
+    document.getElementById("selectedPackageText").textContent = "暂未选择套餐";
     loadOrders();
 
-    alert("提交成功！需求已发送，我们会尽快联系你。");
+    alert("提交成功！需求已发送，我们会尽快联系你核对付款并处理。");
   } catch (error) {
     console.error(error);
     alert("提交失败，请稍后再试，或直接添加微信/电话：15840622209");

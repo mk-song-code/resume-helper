@@ -6,149 +6,204 @@
   <title>简历助手</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="app">
+
     <header class="hero">
-      <div class="tag">学生党友好价 · 实习 / 求职 / 毕业季适用</div>
-      <h1>简历助手</h1>
-      <p>
-        提供简历检查、排版优化、内容润色和面试自我介绍服务，
-        帮你把求职资料改得更清晰、更专业、更有竞争力。
-      </p>
-      <button onclick="scrollToForm()">立即提交需求</button>
+      <div class="hero-glow"></div>
+
+      <div class="hero-top">
+        <div class="brand">
+          <div class="brand-icon">简</div>
+          <div>
+            <strong>简历助手</strong>
+            <span>学生党求职资料优化</span>
+          </div>
+        </div>
+        <div class="price-pill">￥5 起</div>
+      </div>
+
+      <div class="hero-content">
+        <p class="hero-label">实习 / 兼职 / 校招 / 面试准备</p>
+        <h1>让你的简历<br />更清晰、更专业</h1>
+        <p class="hero-desc">
+          提供简历基础检查、排版优化、内容润色和面试自我介绍服务。
+          适合正在找实习、投简历、准备面试的同学。
+        </p>
+
+        <div class="hero-actions">
+          <button onclick="scrollToPackages()">查看套餐</button>
+          <button class="ghost-btn" onclick="showWechat()">微信咨询</button>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <strong>4 类</strong>
+          <span>求职服务</span>
+        </div>
+        <div>
+          <strong>固定价</strong>
+          <span>扫码支付</span>
+        </div>
+        <div>
+          <strong>当天</strong>
+          <span>可沟通加急</span>
+        </div>
+      </div>
     </header>
 
-    <section class="section">
+    <section class="section trust-section">
+      <div class="trust-card">
+        <span>适合人群</span>
+        <h2>正在准备投递，但不知道简历怎么改？</h2>
+        <p>
+          如果你的简历存在经历表达普通、版面混乱、岗位匹配度不清晰、
+          面试介绍没逻辑等问题，可以先选择低价套餐体验。
+        </p>
+      </div>
+
+      <div class="tag-grid">
+        <div>实习求职</div>
+        <div>应届校招</div>
+        <div>兼职申请</div>
+        <div>面试准备</div>
+      </div>
+    </section>
+
+    <section class="section" id="packagesSection">
       <div class="section-title">
-        <h2>热门服务</h2>
-        <p>新客体验价 5 元起，适合学生、实习生和应届求职者。</p>
+        <span>Packages</span>
+        <h2>服务套餐</h2>
+        <p>每个套餐对应固定金额收款码，选择后按标价付款。</p>
       </div>
 
-      <div class="service-grid">
-        <div class="card">
-          <h3>简历基础检查</h3>
-          <p>检查错别字、格式混乱、信息缺失、表达不清等基础问题。</p>
-          <span>￥5 起</span>
+      <div class="package-list">
+
+        <div class="package-card">
+          <div class="package-top">
+            <div>
+              <h3>简历基础检查</h3>
+              <p>适合先快速看问题</p>
+            </div>
+            <span class="mini-tag">体验</span>
+          </div>
+
+          <ul>
+            <li>错别字与标点检查</li>
+            <li>基础格式问题检查</li>
+            <li>表达不清处提醒</li>
+          </ul>
+
+          <div class="package-bottom">
+            <strong>￥5</strong>
+            <button onclick="openPay('basic')">立即支付</button>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>简历排版优化</h3>
-          <p>调整字体、间距、版面结构和内容层级，让简历更清爽。</p>
-          <span>￥9.9 起</span>
+        <div class="package-card">
+          <div class="package-top">
+            <div>
+              <h3>简历排版优化</h3>
+              <p>适合版面不够清爽</p>
+            </div>
+            <span class="mini-tag">排版</span>
+          </div>
+
+          <ul>
+            <li>调整字体与间距</li>
+            <li>优化模块顺序</li>
+            <li>提升整体视觉清晰度</li>
+          </ul>
+
+          <div class="package-bottom">
+            <strong>￥9.9</strong>
+            <button onclick="openPay('layout')">立即支付</button>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>简历内容润色</h3>
-          <p>优化实习经历、校园经历和项目经历，让表达更有重点。</p>
-          <span>￥19.9 起</span>
+        <div class="package-card hot">
+          <div class="hot-label">推荐</div>
+
+          <div class="package-top">
+            <div>
+              <h3>简历内容润色</h3>
+              <p>适合重点优化经历表达</p>
+            </div>
+            <span class="mini-tag">热门</span>
+          </div>
+
+          <ul>
+            <li>优化实习/校园经历</li>
+            <li>突出职责、成果和能力</li>
+            <li>增强岗位匹配表达</li>
+          </ul>
+
+          <div class="package-bottom">
+            <strong>￥19.9</strong>
+            <button onclick="openPay('polish')">立即支付</button>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>面试自我介绍</h3>
-          <p>根据目标岗位定制 1 分钟面试自我介绍稿。</p>
-          <span>￥29.9 起</span>
+        <div class="package-card">
+          <div class="package-top">
+            <div>
+              <h3>面试自我介绍</h3>
+              <p>适合面试前快速准备</p>
+            </div>
+            <span class="mini-tag">面试</span>
+          </div>
+
+          <ul>
+            <li>1 分钟自我介绍稿</li>
+            <li>突出经历和岗位优势</li>
+            <li>表达更自然有逻辑</li>
+          </ul>
+
+          <div class="package-bottom">
+            <strong>￥29.9</strong>
+            <button onclick="openPay('interview')">立即支付</button>
+          </div>
         </div>
+
       </div>
+
+      <p class="notice">
+        说明：请按当前套餐显示的固定金额二维码付款。付款后提交需求，并保留付款截图，方便人工核对。
+      </p>
     </section>
 
     <section class="section light">
       <div class="section-title">
-        <h2>适合人群</h2>
-        <p>主要面向正在找实习、找兼职、准备毕业求职的同学。</p>
-      </div>
-
-      <div class="audience-grid">
-        <div class="audience-card">
-          <strong>实习求职</strong>
-          <p>想投递实习岗位，但简历内容比较普通。</p>
-        </div>
-
-        <div class="audience-card">
-          <strong>应届毕业</strong>
-          <p>需要整理校园经历、项目经历和实践经历。</p>
-        </div>
-
-        <div class="audience-card">
-          <strong>兼职申请</strong>
-          <p>想让个人介绍更清楚、更容易被看到。</p>
-        </div>
-
-        <div class="audience-card">
-          <strong>面试准备</strong>
-          <p>需要准备简洁自然的自我介绍稿。</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">
-        <h2>服务范围</h2>
-        <p>不同价位对应不同修改深度，避免低价反复修改。</p>
-      </div>
-
-      <div class="scope-list">
-        <div class="scope-item">
-          <div>
-            <span class="badge">￥5 起</span>
-            <h3>基础检查</h3>
-          </div>
-          <p>检查错别字、标点、格式混乱、信息缺失、表达不通顺等问题，并给出基础修改建议。</p>
-        </div>
-
-        <div class="scope-item">
-          <div>
-            <span class="badge">￥9.9 起</span>
-            <h3>排版优化</h3>
-          </div>
-          <p>优化简历版面、字体层级、模块顺序和整体视觉，让简历更整洁、更适合投递。</p>
-        </div>
-
-        <div class="scope-item">
-          <div>
-            <span class="badge">￥19.9 起</span>
-            <h3>内容润色</h3>
-          </div>
-          <p>优化经历表达，帮助突出实习经历、校园经历、项目经历中的职责、成果和能力亮点。</p>
-        </div>
-
-        <div class="scope-item">
-          <div>
-            <span class="badge">￥29.9 起</span>
-            <h3>面试自我介绍</h3>
-          </div>
-          <p>根据目标岗位整理 1 分钟自我介绍稿，让表达更自然、更有逻辑。</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section light">
-      <div class="section-title">
+        <span>Process</span>
         <h2>服务流程</h2>
-        <p>简单 4 步，快速完成简历优化。</p>
+        <p>从选择套餐到提交需求，按步骤完成即可。</p>
       </div>
 
       <div class="steps">
         <div>
           <b>1</b>
-          <p>提交需求</p>
+          <p>选择套餐</p>
         </div>
         <div>
           <b>2</b>
-          <p>确认方向</p>
+          <p>扫码支付</p>
         </div>
         <div>
           <b>3</b>
-          <p>开始优化</p>
+          <p>提交需求</p>
         </div>
         <div>
           <b>4</b>
-          <p>交付结果</p>
+          <p>沟通交付</p>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="section-title">
+        <span>Delivery</span>
         <h2>交付时间</h2>
         <p>具体时间会根据内容长度和修改难度沟通确认。</p>
       </div>
@@ -158,26 +213,24 @@
           <strong>基础检查</strong>
           <p>一般当天完成</p>
         </div>
-
         <div class="delivery-card">
           <strong>排版优化</strong>
           <p>当天或次日完成</p>
         </div>
-
         <div class="delivery-card">
           <strong>内容润色</strong>
           <p>一般 1 天内完成</p>
         </div>
-
         <div class="delivery-card">
           <strong>加急需求</strong>
-          <p>需提前沟通确认</p>
+          <p>需提前微信沟通</p>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="section-title">
+        <span>Example</span>
         <h2>案例展示</h2>
         <p>让普通经历表达得更具体、更有结果感。</p>
       </div>
@@ -198,55 +251,30 @@
       </div>
     </section>
 
-    <section class="section price-section">
-      <div class="section-title">
-        <h2>价格说明</h2>
-        <p>前期主打学生友好价，价格低但服务范围清楚。</p>
-      </div>
-
-      <div class="price-list">
-        <div class="price-item">
-          <span>体验版</span>
-          <strong>￥5 起</strong>
-          <p>基础检查 + 简单建议</p>
-        </div>
-
-        <div class="price-item">
-          <span>标准版</span>
-          <strong>￥9.9–19.9</strong>
-          <p>排版优化 + 内容润色</p>
-        </div>
-
-        <div class="price-item">
-          <span>进阶版</span>
-          <strong>￥29.9 起</strong>
-          <p>岗位匹配 + 面试介绍稿</p>
-        </div>
-      </div>
-
-      <p class="notice">
-        注：体验价包含基础修改 1 次，如需深度优化、多次修改或加急处理，可单独沟通。
-      </p>
-    </section>
-
     <section class="section">
       <div class="section-title">
+        <span>Notice</span>
         <h2>服务说明</h2>
-        <p>下单前请先了解以下内容，避免产生误解。</p>
+        <p>下单前请先了解以下内容。</p>
       </div>
 
       <div class="policy-card">
         <p>1. 本服务主要提供简历表达、排版和求职资料优化建议。</p>
         <p>2. 不承诺一定获得面试或 offer，求职结果受岗位、经历、投递时机等多种因素影响。</p>
         <p>3. 请勿提交身份证号、银行卡号、家庭住址等敏感信息。</p>
-        <p>4. 提交记录会在本地浏览器中加密保存，页面展示时会对称呼和联系方式打码。</p>
+        <p>4. 付款后请提交需求，也可以添加微信发送付款截图和简历资料。</p>
       </div>
     </section>
 
     <section class="section form-section" id="formSection">
       <div class="section-title">
+        <span>Submit</span>
         <h2>提交你的需求</h2>
-        <p>填写后会生成一条需求记录，方便后续联系。</p>
+        <p>付款后填写需求，我们会尽快联系你。</p>
+      </div>
+
+      <div class="selected-box">
+        <p>当前套餐：<strong id="selectedPackageText">暂未选择套餐</strong></p>
       </div>
 
       <form id="orderForm">
@@ -263,12 +291,24 @@
 
         <select id="service" required>
           <option value="">请选择服务类型</option>
-          <option value="简历基础检查 ￥5 起">简历基础检查 ￥5 起</option>
-          <option value="简历排版优化 ￥9.9 起">简历排版优化 ￥9.9 起</option>
-          <option value="简历内容润色 ￥19.9 起">简历内容润色 ￥19.9 起</option>
-          <option value="面试自我介绍 ￥29.9 起">面试自我介绍 ￥29.9 起</option>
-          <option value="求职信 / 邮件润色">求职信 / 邮件润色</option>
+          <option value="简历基础检查 ￥5">简历基础检查 ￥5</option>
+          <option value="简历排版优化 ￥9.9">简历排版优化 ￥9.9</option>
+          <option value="简历内容润色 ￥19.9">简历内容润色 ￥19.9</option>
+          <option value="面试自我介绍 ￥29.9">面试自我介绍 ￥29.9</option>
         </select>
+
+        <select id="paymentMethod" required>
+          <option value="">请选择付款方式</option>
+          <option value="微信支付">微信支付</option>
+          <option value="支付宝支付">支付宝支付</option>
+        </select>
+
+        <input
+          type="text"
+          id="paymentNote"
+          placeholder="付款备注，例如：已付款 / 付款时间 / 付款昵称"
+          required
+        />
 
         <textarea
           id="message"
@@ -291,17 +331,54 @@
     </footer>
 
     <div class="float-bar">
-      <button onclick="showWechat()">立即微信咨询</button>
+      <button onclick="showWechat()">微信咨询 / 核对付款</button>
+    </div>
+
+    <div class="pay-modal" id="payModal">
+      <div class="pay-box">
+        <button class="close-btn" onclick="closePay()">×</button>
+
+        <div class="pay-header">
+          <span>固定金额收款</span>
+          <h3 id="payPackageName">套餐名称</h3>
+          <p>应付金额：<strong>￥<span id="payPrice">0</span></strong></p>
+        </div>
+
+        <div class="pay-warning">
+          请使用当前套餐对应二维码付款，不要自行修改金额。
+        </div>
+
+        <div class="pay-tabs">
+          <button class="tab active" onclick="switchPayTab('wechat')">微信支付</button>
+          <button class="tab" onclick="switchPayTab('alipay')">支付宝</button>
+        </div>
+
+        <div class="qr-display">
+          <img id="payQrImage" src="" alt="固定金额收款码" />
+          <p id="payQrText">请扫码支付</p>
+        </div>
+
+        <div class="contact-mini">
+          <p>付款后如需核对，可添加微信：</p>
+          <img src="images/wechat-contact.jpg" alt="微信二维码" />
+        </div>
+
+        <button class="paid-btn" onclick="goSubmitAfterPay()">我已完成支付，去提交需求</button>
+      </div>
     </div>
 
     <div class="wechat-modal" id="wechatModal">
       <div class="wechat-box">
         <h3>添加微信咨询</h3>
         <p>请添加微信或拨打电话，发送“简历优化”获取报价和服务说明。</p>
+
         <div class="wechat-number">微信 / 电话：15840622209</div>
+        <img src="images/wechat-contact.jpg" alt="微信二维码" />
+
         <button onclick="hideWechat()">我知道了</button>
       </div>
     </div>
+
   </div>
 
   <script src="script.js"></script>
