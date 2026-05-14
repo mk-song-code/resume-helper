@@ -4,6 +4,9 @@ const orderList = document.getElementById("orderList");
 const STORAGE_KEY = "resumeOrdersEncrypted";
 const SECRET_KEY = "resume-helper-local-demo-key";
 
+// 你的 Formspree 表单接收地址
+const FORM_ENDPOINT = "https://formspree.io/f/mnjwyldj";
+
 function scrollToForm() {
   document.getElementById("formSection").scrollIntoView({
     behavior: "smooth"
@@ -57,7 +60,7 @@ function maskContact(contact) {
   return text.slice(0, 2) + "****" + text.slice(-2);
 }
 
-/* 简单加密：适合本地演示，不适合正式商业数据安全 */
+/* 简单加密：适合本地演示，不适合正式商业级数据安全 */
 function simpleEncrypt(text) {
   let result = "";
 
@@ -159,8 +162,39 @@ function clearOrders() {
   alert("本地提交记录已清空。");
 }
 
-form.addEventListener("submit", function (e) {
+/* 提交到 Formspree，让你邮箱收到客户信息 */
+async function sendToFormspree(order) {
+  const formData = new FormData();
+
+  formData.append("称呼", order.name);
+  formData.append("联系方式", order.phone);
+  formData.append("目标岗位", order.job);
+  formData.append("服务类型", order.service);
+  formData.append("需求说明", order.message);
+  formData.append("提交时间", order.submitTime);
+  formData.append("_subject", "简历助手收到新的客户需求");
+
+  const response = await fetch(FORM_ENDPOINT, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json"
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error("提交到 Formspree 失败");
+  }
+
+  return response;
+}
+
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
+
+  const submitButton = form.querySelector("button[type='submit']");
+  submitButton.disabled = true;
+  submitButton.textContent = "提交中...";
 
   const order = {
     name: document.getElementById("name").value.trim(),
@@ -173,18 +207,32 @@ form.addEventListener("submit", function (e) {
 
   if (!order.name || !order.phone || !order.job || !order.service || !order.message) {
     alert("请把信息填写完整。");
+    submitButton.disabled = false;
+    submitButton.textContent = "提交需求";
     return;
   }
 
-  const orders = getOrders();
-  orders.unshift(order);
+  try {
+    // 1. 发送到 Formspree，你邮箱会收到
+    await sendToFormspree(order);
 
-  saveOrders(orders);
+    // 2. 本地加密保存一份
+    const orders = getOrders();
+    orders.unshift(order);
+    saveOrders(orders);
 
-  form.reset();
-  loadOrders();
+    // 3. 页面显示打码后的提交记录
+    form.reset();
+    loadOrders();
 
-  alert("提交成功！你的称呼和联系方式已打码展示，并已加密保存在本地浏览器。");
+    alert("提交成功！需求已发送，我们会尽快联系你。");
+  } catch (error) {
+    console.error(error);
+    alert("提交失败，请稍后再试，或直接添加微信/电话：15840622209");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "提交需求";
+  }
 });
 
 loadOrders();
